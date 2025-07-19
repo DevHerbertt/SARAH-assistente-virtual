@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e7107f7e-9634-4ecc-a8e7-c4beefd187f8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/marytts_lang_en_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sarah/lib/marytts-lang-en-5.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sarah/lib/marytts-runtime-5.2-jar-with-dependencies.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sarah/lib/voice-cmu-slt-hsmm-5.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sarah/lib/voice-dfki-prudence-hsmm-5.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/COPYING" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/c/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/c/test_vosk.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/c/test_vosk_speaker.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/build/Vosk.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/build/lib/linux-x64/.keep-me" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/build/lib/osx-universal/.keep-me" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/build/lib/win-x64/.keep-me" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/lib/netstandard2.0/.keep-me" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/src/BatchModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/src/Model.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/src/SpkModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/src/Vosk.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/src/VoskBatchRecognizer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/src/VoskPINVOKE.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/csharp/nuget/src/VoskRecognizer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/go/COPYING" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/go/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/go/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/go/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/go/vosk.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/ios/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/ios/VoskApiTest.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/ios/VoskApiTest/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/ios/VoskApiTest/Base.lproj/LaunchScreen.storyboard" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/ios/VoskApiTest/Base.lproj/Main.storyboard" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/ios/VoskApiTest/Vosk/vosk_api.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/java/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/java/lib/src/main/java/org/vosk/LogLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/java/lib/src/main/resources/darwin/.keep-me" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/java/lib/src/main/resources/linux-x86-64/.keep-me" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/java/lib/src/main/resources/win32-x86-64/.keep-me" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/java/lib/src/main/resources/win32-x86-64/empty" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/nodejs/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/nodejs/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/nodejs/demo/test_simple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/nodejs/demo/test_simple_async.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/nodejs/demo/test_speaker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/nodejs/demo/test_srt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/nodejs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/nodejs/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/.pylintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/colab/kaldi-build.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/colab/vosk-adaptation.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/colab/vosk-training.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/colab/vosk.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_alternatives.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_empty.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_ep.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_ffmpeg.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_gpu_batch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_gradio.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_itn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_microphone.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_nlsml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_reset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_simple.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_speaker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_srt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_text.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_webvtt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/example/test_words.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/test/transcribe_scp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/vosk/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/vosk/transcriber/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/vosk/transcriber/cli.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/vosk/transcriber/transcriber.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/python/vosk_builder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/ruby/vosk.gemspec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/rust/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/batch_model.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/batch_model.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/batch_recognizer.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/batch_recognizer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/json.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/language_model.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/language_model.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/model.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/model.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/postprocessor.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/postprocessor.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/recognizer.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/recognizer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/spk_model.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/spk_model.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/vosk_api.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/src/vosk_api.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/training/conf/mfcc.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/training/conf/online_cmvn.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/training/local/chain/run_ivector_common.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/training/local/chain/run_tdnn.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/training/local/data_prep.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/training/local/download_and_untar.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/training/local/download_lm.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/training/local/prepare_dict.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/training/local/score.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/Dockerfile.manylinux-mkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/Dockerfile.win" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/Dockerfile.winaarch64" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-dockcross-manylinux.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-dockcross-musl.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-dockcross.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-docker-mkl.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-docker-win.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-docker-win32.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-docker-winaarch64.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-docker.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-wheels-dockcross.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-wheels-mkl.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-wheels-win.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-wheels-win32.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-wheels-winaarch64.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/travis/build-wheels.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/webjs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/vosk-api/webjs/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sarah/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sarah/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sarah/commands/OpenAppCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sarah/commands/OpenAppCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sarah/commands/ShutdownCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sarah/commands/ShutdownCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sarah/voice/VoiceListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sarah/voice/VoiceListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sarah/voice/VoiceResponder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sarah/voice/VoiceResponder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/sarah/tests/VoiceListenerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/sarah/tests/VoiceListenerTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2zKETijdG4WX5BSqYfKZvjZ2jOs" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.VoiceResponder.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Microsoft/SARAH-assistente-virtual/src/main/java/com/sarah/lib",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Microsoft\SARAH-assistente-virtual\src\main\java\com\sarah\lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.sarah.Main" />
+      <module name="SARAH-assistente-virtual" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sarah.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VoiceResponder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.sarah.voice.VoiceResponder" />
+      <module name="SARAH-assistente-virtual" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sarah.voice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.VoiceResponder" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e7107f7e-9634-4ecc-a8e7-c4beefd187f8" name="Changes" comment="" />
+      <created>1751471374021</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751471374021</updated>
+    </task>
+    <servers />
+  </component>
+</project>

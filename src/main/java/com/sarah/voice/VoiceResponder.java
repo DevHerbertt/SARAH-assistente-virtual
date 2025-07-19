@@ -1,4 +1,7 @@
-package main.java.com.sarah.voice;
+package com.sarah.voice;
+
 
 public class VoiceResponder {
+
+
 }

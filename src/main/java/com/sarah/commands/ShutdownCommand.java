@@ -1,4 +1,4 @@
-package main.java.com.sarah.commands;
+package com.sarah.commands;
 
 public class ShutdownCommand {
 }
