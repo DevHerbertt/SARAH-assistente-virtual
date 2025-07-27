@@ -1,6 +1,6 @@
 package com.sarah.voice;
 
-import com.sarah.utils.TextCorretor;
+import com.sarah.utils.TextCorretorUtil;
 import org.vosk.LibVosk;
 import org.vosk.LogLevel;
 import org.vosk.Model;
@@ -15,7 +15,7 @@ public class VoiceListener {
     private final Model model;
     private final Recognizer recognizer;
     private TargetDataLine microphone;
-    TextCorretor textCorretor = new TextCorretor();
+    TextCorretorUtil textCorretor = new TextCorretorUtil();
 
 
     public VoiceListener(String modelPath) throws IOException {
@@ -26,10 +26,11 @@ public class VoiceListener {
         // Inicializa o modelo Vosk com o caminho fornecido
         model = new Model(modelPath);
         recognizer = new Recognizer(model, 16000.0f); // Taxa de amostragem de 16kHz
+
     }
 
     // Método para iniciar a escuta da voz
-    public void listen() throws LineUnavailableException {
+    public String listen() throws LineUnavailableException {
         AudioFormat format = new AudioFormat(16000.0f, 16, 1, true, false);  // Formato de áudio para capturar a voz
 
         // Verifica se o microfone suporta o formato especificado
@@ -59,10 +60,12 @@ public class VoiceListener {
 
                 String correctedtext = textCorretor.correctVocabulary(texto);
 
+
                 if (!texto.isEmpty()) {
                     System.out.println("🗣️ Você disse (Final): " + correctedtext);
                     // Aqui pode chamar: new SarahEngine().responder(texto);
                 }
+                return correctedtext;
             }
         }
     }
@@ -91,14 +94,5 @@ public class VoiceListener {
         }
     }
 
-    public static void main(String[] args) {
-        try {
-            // Passar o caminho do modelo desejado para o construtor
-            VoiceListener listener = new VoiceListener("path/to/your/model");
-            listener.listen();  // Inicia a escuta
 
-        } catch (Exception e) {
-            e.printStackTrace();  // Exibe erros no console
-        }
-    }
 }

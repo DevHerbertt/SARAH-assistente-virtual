@@ -1,0 +1,9 @@
+{
+  "criar_pasta": ["criar pasta", "nova pasta", "fazer uma pasta"],
+  "deletar_pasta": ["deletar pasta", "remover pasta", "apagar diretório"],
+  "criar_arquivo": ["criar arquivo", "novo arquivo", "fazer um arquivo"],
+  "deletar_arquivo": ["deletar arquivo", "remover arquivo", "apagar arquivo"],
+  "ler_arquivo": ["ler arquivo", "abrir arquivo", "mostrar conteúdo"],
+  "detalhes_arquivo": ["detalhes do arquivo", "informações do arquivo", "ver detalhes"],
+  "listar_tudo": ["listar tudo", "mostrar arquivos", "ver pastas e arquivos"]
+}
