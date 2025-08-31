@@ -1,5 +1,6 @@
 package com.sarah.voice;
 
+import com.sarah.controller.CommandRouter;
 import com.sarah.utils.TextCorretorUtil;
 import org.vosk.LibVosk;
 import org.vosk.LogLevel;
@@ -9,90 +10,113 @@ import org.vosk.Recognizer;
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 public class VoiceListener {
+
+    private static final Logger logger = Logger.getLogger(VoiceListener.class.getName());
 
     private final Model model;
     private final Recognizer recognizer;
     private TargetDataLine microphone;
-    TextCorretorUtil textCorretor = new TextCorretorUtil();
-
+    private final TextCorretorUtil textCorretor = new TextCorretorUtil();
 
     public VoiceListener(String modelPath) throws IOException {
         Locale.setDefault(new Locale("pt", "BR"));
-        // Definindo o nível de log para reduzir a poluição no console
         LibVosk.setLogLevel(LogLevel.WARNINGS);
 
-        // Inicializa o modelo Vosk com o caminho fornecido
+        logger.info("Inicializando modelo Vosk com caminho: " + modelPath);
         model = new Model(modelPath);
-        recognizer = new Recognizer(model, 16000.0f); // Taxa de amostragem de 16kHz
-
+        recognizer = new Recognizer(model, 16000.0f);
+        logger.info("Modelo e reconhecedor Vosk inicializados com sucesso.");
     }
 
-    // Método para iniciar a escuta da voz
-    public String listen() throws LineUnavailableException {
-        AudioFormat format = new AudioFormat(16000.0f, 16, 1, true, false);  // Formato de áudio para capturar a voz
-
-        // Verifica se o microfone suporta o formato especificado
+    // Escuta contínua para comandos principais
+    public void listenContinuously() throws LineUnavailableException {
+        AudioFormat format = new AudioFormat(16000.0f, 16, 1, true, false);
         DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
+
         if (!AudioSystem.isLineSupported(info)) {
-            throw new LineUnavailableException("Microfone não suporta este formato.");
+            logger.severe("Microfone não suporta o formato de áudio necessário.");
+            throw new LineUnavailableException("Microfone incompatível com o formato exigido.");
         }
 
-        // Obter o microfone e configurar
         microphone = (TargetDataLine) AudioSystem.getLine(info);
-        microphone.open(format, 16384);  // Tamanho do buffer ajustado
+        microphone.open(format, 16384);
         microphone.start();
+        logger.info("🎙️ Microfone aberto e capturando áudio. Sarah está ouvindo...");
 
+        CommandRouter router = new CommandRouter();
+        byte[] buffer = new byte[8192];
 
-        System.out.println("🎙️ Sarah está ouvindo... (fale algo)");
-
-        byte[] buffer = new byte[8192];  // Tamanho do buffer para captura de áudio
-
-        // Loop principal para processar a fala
         while (true) {
             int bytesRead = microphone.read(buffer, 0, buffer.length);
 
-            // Verifica se uma transcrição completa foi reconhecida
             if (recognizer.acceptWaveForm(buffer, bytesRead)) {
-                String result = recognizer.getResult();
-                String texto = extractTextFromJson(result); // Método para extrair o texto de forma mais segura
-
-                String correctedtext = textCorretor.correctVocabulary(texto);
-
+                String resultJson = recognizer.getResult();
+                String texto = extractTextFromJson(resultJson);
 
                 if (!texto.isEmpty()) {
-                    System.out.println("🗣️ Você disse (Final): " + correctedtext);
-                    // Aqui pode chamar: new SarahEngine().responder(texto);
+                    String textoCorrigido = textCorretor.correctVocabulary(texto);
+                    logger.info("🗣️ Você disse: " + textoCorrigido);
+
+                    router.execute(textoCorrigido);
                 }
-                return correctedtext;
             }
         }
     }
 
-    // Método para extrair o texto de um JSON retornado pelo recognizer
+    // Extrai o campo "text" do JSON de retorno do Vosk
     private String extractTextFromJson(String jsonString) {
-        // Utilizando expressão regular para extrair o valor do campo "text"
-        String texto = jsonString.replaceAll(".*\"text\"\\s*:\\s*\"(.*?)\".*", "$1").trim();
-        return texto;
+        if (jsonString == null || jsonString.isEmpty() || jsonString.trim().equals("{}")) {
+            logger.warning("JSON de reconhecimento está vazio ou nulo: " + jsonString);
+            return "";
+        }
+
+        try {
+            // Tenta parsear o JSON corretamente
+            if (jsonString.contains("\"text\"") && jsonString.contains(":")) {
+                // Extrai o texto entre as aspas após "text":
+                int startIndex = jsonString.indexOf("\"text\"") + 6;
+                startIndex = jsonString.indexOf(":", startIndex) + 1;
+                startIndex = jsonString.indexOf("\"", startIndex) + 1;
+                int endIndex = jsonString.indexOf("\"", startIndex);
+
+                if (startIndex > 0 && endIndex > startIndex) {
+                    String texto = jsonString.substring(startIndex, endIndex).trim();
+                    logger.fine("Texto extraído do JSON: " + texto);
+                    return texto;
+                }
+            }
+
+            logger.warning("Não foi possível extrair texto do JSON: " + jsonString);
+            return "";
+        } catch (Exception e) {
+            logger.warning("Erro ao extrair texto do JSON: " + jsonString + " - " + e.getMessage());
+            return "";
+        }
     }
 
-    // Método para parar a captura e fechar o microfone e recursos
+    // Libera recursos e fecha microfone, reconhecedor e modelo
     public void stop() {
+        logger.info("Encerrando recursos de áudio e modelo...");
+
         if (microphone != null) {
             microphone.stop();
             microphone.close();
+            logger.info("Microfone fechado.");
         }
 
-        // Fechar o modelo e reconhecedor ao finalizar
         if (recognizer != null) {
             recognizer.close();
+            logger.info("Reconhecedor encerrado.");
         }
 
         if (model != null) {
             model.close();
+            logger.info("Modelo encerrado.");
         }
+
+        logger.info("Todos os recursos foram liberados com sucesso.");
     }
-
-
 }
