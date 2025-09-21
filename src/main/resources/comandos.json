@@ -1,10 +1,12 @@
 {
-  "criar_pasta": ["criar pasta", "nova pasta", "fazer uma pasta"],
+  "criar_pasta": ["criar pasta", "nova pasta", "fazer uma pasta","cria a pasta"],
   "deletar_pasta": ["deletar pasta", "remover pasta", "apagar diretório" , "apagar pastar"],
   "criar_arquivo": ["criar arquivo", "novo arquivo", "fazer um arquivo"],
   "deletar_arquivo": ["deletar arquivo", "remover arquivo", "apagar arquivo"],
   "ler_arquivo": ["ler arquivo", "abrir arquivo", "mostrar conteúdo"],
   "detalhes_arquivo": ["detalhes do arquivo", "informações do arquivo", "ver detalhes"],
   "listar_tudo": ["listar tudo", "mostrar arquivos", "ver pastas e arquivos"],
-  "sair": ["sair", "encerrar", "parar", "fechar"]
+  "sair": ["sair", "encerrar", "parar", "fechar"],
+  "Abrindo_Navegador": ["abrir navegador", "google", "abrir navegadores", "brilho navegador","navegador","entrai no navegador"],
+  "Painel_de_Detalhes_do_computador": ["abrir navegador", "google", "abrir navegadores", "brilho navegador","navegador","entrai no navegador"]
 }

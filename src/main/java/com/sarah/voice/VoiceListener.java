@@ -1,6 +1,7 @@
 package com.sarah.voice;
 
-import com.sarah.controller.CommandRouter;
+import com.sarah.controller.CommandRouterFileAndDirectory;
+import com.sarah.controller.CommandRouterSO;
 import com.sarah.utils.TextCorretorUtil;
 import org.vosk.LibVosk;
 import org.vosk.LogLevel;
@@ -46,7 +47,8 @@ public class VoiceListener {
         microphone.start();
         logger.info("🎙️ Microfone aberto e capturando áudio. Sarah está ouvindo...");
 
-        CommandRouter router = new CommandRouter();
+        CommandRouterFileAndDirectory router = new CommandRouterFileAndDirectory();
+        CommandRouterSO router2 = new CommandRouterSO();
         byte[] buffer = new byte[8192];
 
         while (true) {
@@ -61,6 +63,7 @@ public class VoiceListener {
                     logger.info("🗣️ Você disse: " + textoCorrigido);
 
                     router.execute(textoCorrigido);
+                    router2.execute(textoCorrigido);
                 }
             }
         }
