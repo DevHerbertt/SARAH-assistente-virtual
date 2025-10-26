@@ -1,4 +1,12 @@
-package main.java.com.sarah.users;
+package com.sarah.users;
 
-public class UserManager {
+
+import com.sarah.users.User;
+import lombok.experimental.SuperBuilder;
+
+
+public class UserManager extends User {
+    public UserManager(String nome, String email) {
+        super(nome, email);
+    }
 }

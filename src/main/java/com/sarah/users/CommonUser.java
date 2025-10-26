@@ -1,4 +1,12 @@
-package main.java.com.sarah.users;
+package com.sarah.users;
 
-public class CommonUser {
+import com.sarah.users.User;
+import lombok.experimental.SuperBuilder;
+
+
+public class CommonUser extends User {
+
+    public CommonUser(String nome, String email) {
+        super(nome, email);
+    }
 }

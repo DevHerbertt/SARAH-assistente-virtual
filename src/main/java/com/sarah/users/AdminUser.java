@@ -1,4 +1,11 @@
-package main.java.com.sarah.users;
+package com.sarah.users;
 
-public class AdminUser {
+import com.sarah.users.User;
+import lombok.experimental.SuperBuilder;
+
+
+public class AdminUser extends User {
+    public AdminUser(String nome, String email) {
+        super(nome, email);
+    }
 }

@@ -2,6 +2,9 @@ package com.sarah.controller;
 
 import com.sarah.service.fileAndDirectory.DirectoryService;
 import com.sarah.service.fileAndDirectory.FileService;
+import com.sarah.users.AdminUser;
+import com.sarah.users.User;
+import com.sarah.users.UserManager;
 import com.sarah.utils.ComandVoiceMapperUtil;
 import com.sarah.utils.InputDialogUtil;
 import com.sarah.utils.QuestionAndResponderUtil;
@@ -26,6 +29,12 @@ public class CommandRouterFileAndDirectory {
     }
 
     public void execute(String phrase) {
+
+
+//        if (!(adminUser instanceof AdminUser || adminUser instanceof UserManager)) {
+//            log.error("🚫 Acesso negado. Você não tem permissão para executar este comando.");
+//            return;
+//        }
         if (phrase == null || phrase.isBlank() || phrase.equals("{}")) {
             log.warn("Frase vazia ou inválida recebida: " + phrase);
             return;

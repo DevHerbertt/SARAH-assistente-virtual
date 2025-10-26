@@ -1,7 +1,5 @@
 package com.sarah.voice;
 
-import com.sarah.controller.CommandRouterFileAndDirectory;
-import com.sarah.controller.CommandRouterSO;
 import com.sarah.utils.TextCorretorUtil;
 import org.vosk.LibVosk;
 import org.vosk.LogLevel;
@@ -14,13 +12,14 @@ import java.util.Locale;
 import java.util.logging.Logger;
 
 public class VoiceListener {
-
+    public String textoCorrigido;
     private static final Logger logger = Logger.getLogger(VoiceListener.class.getName());
 
     private final Model model;
     private final Recognizer recognizer;
     private TargetDataLine microphone;
     private final TextCorretorUtil textCorretor = new TextCorretorUtil();
+    private boolean listening = false;
 
     public VoiceListener(String modelPath) throws IOException {
         Locale.setDefault(new Locale("pt", "BR"));
@@ -32,8 +31,8 @@ public class VoiceListener {
         logger.info("Modelo e reconhecedor Vosk inicializados com sucesso.");
     }
 
-    // Escuta contínua para comandos principais
-    public void listenContinuously() throws LineUnavailableException {
+    // Inicia a escuta contínua
+    public void startListening() throws LineUnavailableException {
         AudioFormat format = new AudioFormat(16000.0f, 16, 1, true, false);
         DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
 
@@ -45,10 +44,39 @@ public class VoiceListener {
         microphone = (TargetDataLine) AudioSystem.getLine(info);
         microphone.open(format, 16384);
         microphone.start();
+        listening = true;
         logger.info("🎙️ Microfone aberto e capturando áudio. Sarah está ouvindo...");
+    }
 
-        CommandRouterFileAndDirectory router = new CommandRouterFileAndDirectory();
-        CommandRouterSO router2 = new CommandRouterSO();
+    // Obtém o próximo comando reconhecido (não-bloqueante)
+    public String getNextCommand() {
+        if (!listening || microphone == null) {
+            return null;
+        }
+
+        byte[] buffer = new byte[8192];
+        int bytesRead = microphone.read(buffer, 0, buffer.length);
+
+        if (bytesRead > 0 && recognizer.acceptWaveForm(buffer, bytesRead)) {
+            String resultJson = recognizer.getResult();
+            String texto = extractTextFromJson(resultJson);
+
+            if (!texto.isEmpty()) {
+                textoCorrigido = textCorretor.correctVocabulary(texto);
+                logger.info("🗣️ Você disse: " + textoCorrigido);
+                return textoCorrigido;
+            }
+        }
+
+        return null;
+    }
+
+    // Versão simplificada para teste
+    public String listenForCommand() throws LineUnavailableException, InterruptedException {
+        if (!listening) {
+            startListening();
+        }
+
         byte[] buffer = new byte[8192];
 
         while (true) {
@@ -58,28 +86,26 @@ public class VoiceListener {
                 String resultJson = recognizer.getResult();
                 String texto = extractTextFromJson(resultJson);
 
-                if (!texto.isEmpty()) {
-                    String textoCorrigido = textCorretor.correctVocabulary(texto);
-                    logger.info("🗣️ Você disse: " + textoCorrigido);
-
-                    router.execute(textoCorrigido);
-                    router2.execute(textoCorrigido);
+                if (!texto.isEmpty() && !texto.equals("oi")) {
+                    textoCorrigido = textCorretor.correctVocabulary(texto);
+                    logger.info("🗣️ Comando reconhecido: " + textoCorrigido);
+                    return textoCorrigido;
                 }
             }
+
+            // Pequena pausa para não sobrecarregar
+            Thread.sleep(100);
         }
     }
 
     // Extrai o campo "text" do JSON de retorno do Vosk
     private String extractTextFromJson(String jsonString) {
         if (jsonString == null || jsonString.isEmpty() || jsonString.trim().equals("{}")) {
-            logger.warning("JSON de reconhecimento está vazio ou nulo: " + jsonString);
             return "";
         }
 
         try {
-            // Tenta parsear o JSON corretamente
             if (jsonString.contains("\"text\"") && jsonString.contains(":")) {
-                // Extrai o texto entre as aspas após "text":
                 int startIndex = jsonString.indexOf("\"text\"") + 6;
                 startIndex = jsonString.indexOf(":", startIndex) + 1;
                 startIndex = jsonString.indexOf("\"", startIndex) + 1;
@@ -87,22 +113,19 @@ public class VoiceListener {
 
                 if (startIndex > 0 && endIndex > startIndex) {
                     String texto = jsonString.substring(startIndex, endIndex).trim();
-                    logger.fine("Texto extraído do JSON: " + texto);
                     return texto;
                 }
             }
-
-            logger.warning("Não foi possível extrair texto do JSON: " + jsonString);
             return "";
         } catch (Exception e) {
-            logger.warning("Erro ao extrair texto do JSON: " + jsonString + " - " + e.getMessage());
+            logger.warning("Erro ao extrair texto do JSON: " + e.getMessage());
             return "";
         }
     }
 
-    // Libera recursos e fecha microfone, reconhecedor e modelo
     public void stop() {
         logger.info("Encerrando recursos de áudio e modelo...");
+        listening = false;
 
         if (microphone != null) {
             microphone.stop();
@@ -112,12 +135,10 @@ public class VoiceListener {
 
         if (recognizer != null) {
             recognizer.close();
-            logger.info("Reconhecedor encerrado.");
         }
 
         if (model != null) {
             model.close();
-            logger.info("Modelo encerrado.");
         }
 
         logger.info("Todos os recursos foram liberados com sucesso.");
