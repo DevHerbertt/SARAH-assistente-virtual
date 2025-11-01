@@ -2,51 +2,56 @@ package com.sarah.controller;
 
 import com.sarah.service.fileAndDirectory.DirectoryService;
 import com.sarah.service.fileAndDirectory.FileService;
-import com.sarah.users.AdminUser;
-import com.sarah.users.User;
-import com.sarah.users.UserManager;
+import com.sarah.service.memories.MemoriesCommandService;
 import com.sarah.utils.ComandVoiceMapperUtil;
 import com.sarah.utils.InputDialogUtil;
 import com.sarah.utils.QuestionAndResponderUtil;
 import com.sarah.voice.VoiceResponderDefault;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
 
 @Log4j2
+@Component
 public class CommandRouterFileAndDirectory {
     private final ComandVoiceMapperUtil comandVoiceMapper;
-    private final DirectoryService directoryService = new DirectoryService();
-    private final FileService fileService = new FileService();
+    private final DirectoryService directoryService;
+    private final FileService fileService;
+    private final MemoriesCommandService memoriesCommandService;
 
-
-    public CommandRouterFileAndDirectory() {
+    // Injeta MemoriesCommandService via construtor
+    public CommandRouterFileAndDirectory(MemoriesCommandService memoriesCommandService) {
+        this.memoriesCommandService = memoriesCommandService;
+        this.directoryService = new DirectoryService();
+        this.fileService = new FileService();
 
         try {
-            // Ajuste o caminho do JSON
-            comandVoiceMapper = new ComandVoiceMapperUtil("C:\\Users\\Microsoft\\SARAH-assistente-virtual\\src\\main\\resources\\comandos.json");
+            String jsonPath = "src/main/resources/comandos.json";
+            comandVoiceMapper = new ComandVoiceMapperUtil(jsonPath);
+            System.out.println("✅ Comandos carregados de: " + jsonPath);
         } catch (Exception e) {
+            System.err.println("❌ Erro ao carregar comandos: " + e.getMessage());
             throw new RuntimeException("Erro ao carregar mapeamento de comandos", e);
         }
     }
 
     public void execute(String phrase) {
-
-
-//        if (!(adminUser instanceof AdminUser || adminUser instanceof UserManager)) {
-//            log.error("🚫 Acesso negado. Você não tem permissão para executar este comando.");
-//            return;
-//        }
         if (phrase == null || phrase.isBlank() || phrase.equals("{}")) {
             log.warn("Frase vazia ou inválida recebida: " + phrase);
             return;
         }
 
+        System.out.println("🔍 Identificando comando para: " + phrase);
         String command = comandVoiceMapper.identifyCommand(phrase);
 
         if (command == null) {
             log.info("Nenhum comando reconhecido para: " + phrase);
+            QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.ERRO);
             return;
         }
 
+        // Agora não será null
+
+        System.out.println("🎯 Comando identificado: " + command);
 
         switch (command) {
             case "criar_pasta" -> {

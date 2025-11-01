@@ -1,6 +1,7 @@
 package com.sarah.service.System;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
 import oshi.SystemInfo;
 import oshi.hardware.*;
 import oshi.software.os.OperatingSystem;
@@ -10,6 +11,7 @@ import java.text.DecimalFormat;
 import java.util.Enumeration;
 
 @Log4j2
+@Component
 public class SystemInfoService {
     private final SystemInfo systemInfo;
     private final HardwareAbstractionLayer hardware;

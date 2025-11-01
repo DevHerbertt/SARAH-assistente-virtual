@@ -1,30 +1,29 @@
 package com.sarah.controller;
 
 import com.sarah.service.SO.BrowserService;
-import com.sarah.service.System.SystemInfoService;
-import com.sarah.service.System.SystemToolsService;
-import com.sarah.service.fileAndDirectory.DirectoryService;
-import com.sarah.service.fileAndDirectory.FileService;
+import com.sarah.service.memories.MemoriesCommandService;
 import com.sarah.utils.ComandVoiceMapperUtil;
 import com.sarah.utils.QuestionAndResponderUtil;
 import com.sarah.voice.VoiceResponderDefault;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Log4j2
+@Component
 public class CommandRouterWeb {
     private final ComandVoiceMapperUtil comandVoiceMapper;
-    private final BrowserService browserService = new BrowserService();
-    private final SystemInfoService systemInfoService = new SystemInfoService();
-    private final SystemToolsService systemToolsService = new SystemToolsService();
+    private final BrowserService browserService;
+    private final MemoriesCommandService memoriesCommandService;
 
+    public CommandRouterWeb(MemoriesCommandService memoriesCommandService, BrowserService browserService) {
+        this.memoriesCommandService = memoriesCommandService;
+        this.browserService = browserService;
 
-    public CommandRouterWeb() {
         try {
-            // Usar caminho relativo
             String jsonPath = "src/main/resources/comandos.json";
-            comandVoiceMapper = new ComandVoiceMapperUtil(jsonPath);
+            this.comandVoiceMapper = new ComandVoiceMapperUtil(jsonPath);
             System.out.println("✅ Comandos carregados de: " + jsonPath);
         } catch (Exception e) {
             System.err.println("❌ Erro ao carregar comandos: " + e.getMessage());
@@ -47,10 +46,10 @@ public class CommandRouterWeb {
             return;
         }
 
+        memoriesCommandService.updateRepetition(command);
         System.out.println("🎯 Comando identificado: " + command);
 
         switch (command) {
-
             case "Abrindo_Navegador" -> {
                 log.debug("Abrindo_Navegador : initialize");
                 browserService.openBrowser("https://www.google.com/");

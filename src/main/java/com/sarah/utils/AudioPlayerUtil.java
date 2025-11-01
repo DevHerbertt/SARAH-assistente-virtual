@@ -1,11 +1,15 @@
 package com.sarah.utils;
 
+import lombok.experimental.UtilityClass;
+
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+
+@UtilityClass
 public class AudioPlayerUtil {
 
     public static void play(String audioResourcePath) {

@@ -1,8 +1,13 @@
 package com.sarah.utils;
 
+import lombok.experimental.UtilityClass;
+
 import javax.swing.*;
 import java.awt.*;
 
+
+
+@UtilityClass
 public class InputDialogUtil {
 
     public static String mostrarDialogo(String titulo) {

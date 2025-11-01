@@ -1,6 +1,8 @@
 package com.sarah.voice;
 
 import com.sarah.utils.TextCorretorUtil;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.vosk.LibVosk;
 import org.vosk.LogLevel;
 import org.vosk.Model;
@@ -11,17 +13,24 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+@Component
 public class VoiceListener {
     public String textoCorrigido;
     private static final Logger logger = Logger.getLogger(VoiceListener.class.getName());
 
-    private final Model model;
-    private final Recognizer recognizer;
+    private Model model;
+    private Recognizer recognizer;
     private TargetDataLine microphone;
-    private final TextCorretorUtil textCorretor = new TextCorretorUtil();
+    private final TextCorretorUtil textCorretor;
     private boolean listening = false;
 
-    public VoiceListener(String modelPath) throws IOException {
+    // Construtor para Spring - sem parâmetros
+    public VoiceListener(TextCorretorUtil textCorretor) {
+        this.textCorretor = textCorretor;
+    }
+
+    // Método de inicialização
+    public void initialize(@Value("${voice.model.path:src/main/resources/vosk-model-small-pt-0.3}") String modelPath) throws IOException {
         Locale.setDefault(new Locale("pt", "BR"));
         LibVosk.setLogLevel(LogLevel.WARNINGS);
 
@@ -33,6 +42,10 @@ public class VoiceListener {
 
     // Inicia a escuta contínua
     public void startListening() throws LineUnavailableException {
+        if (model == null) {
+            throw new IllegalStateException("VoiceListener não foi inicializado. Chame initialize() primeiro.");
+        }
+
         AudioFormat format = new AudioFormat(16000.0f, 16, 1, true, false);
         DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
 
@@ -72,7 +85,11 @@ public class VoiceListener {
     }
 
     // Versão simplificada para teste
-    public String listenForCommand() throws LineUnavailableException, InterruptedException {
+    public String listenForCommand() throws LineUnavailableException, InterruptedException, IOException {
+        if (model == null) {
+            initialize("src/main/resources/vosk-model-small-pt-0.3");
+        }
+
         if (!listening) {
             startListening();
         }
@@ -142,5 +159,10 @@ public class VoiceListener {
         }
 
         logger.info("Todos os recursos foram liberados com sucesso.");
+    }
+
+    // Verifica se está inicializado
+    public boolean isInitialized() {
+        return model != null && recognizer != null;
     }
 }

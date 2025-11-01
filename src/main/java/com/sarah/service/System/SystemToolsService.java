@@ -1,11 +1,14 @@
 package com.sarah.service.System;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 @Log4j2
+@Component
 public class SystemToolsService {
     
     // Abre o Painel de Controle

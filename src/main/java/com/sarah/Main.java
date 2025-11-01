@@ -3,42 +3,54 @@ package com.sarah;
 import com.sarah.controller.CommandRouterFileAndDirectory;
 import com.sarah.controller.CommandRouterSO;
 import com.sarah.controller.CommandRouterWeb;
+import com.sarah.utils.VerificationUsers;
 import com.sarah.voice.VoiceListener;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
+@SpringBootApplication
 public class Main {
-    public static void main(String[] args) throws Exception {
-        String modelPath = "src/main/resources/vosk-model-small-pt-0.3";
-        VoiceListener listener = new VoiceListener(modelPath);
-        CommandRouterFileAndDirectory routerFileAndDirectory = new CommandRouterFileAndDirectory();
-        CommandRouterSO routerSO = new CommandRouterSO();
-        CommandRouterWeb routerWeb = new CommandRouterWeb();
 
-        try {
-            System.out.println("🎧 Sarah está ouvindo... Diga 'Sair' para encerrar.");
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+    }
 
-            // Loop principal de escuta
-            while (true) {
-                // Escuta por um comando (esta versão é bloqueante)
-                String comando = listener.listenForCommand();
+    @Bean
+    public CommandLineRunner run(
+            VoiceListener listener,
+            CommandRouterFileAndDirectory routerFileAndDirectory,
+            CommandRouterSO routerSO,
+            CommandRouterWeb routerWeb,
+            VerificationUsers verificationUsers) {
 
-                if (comando != null && !comando.trim().isEmpty()) {
-                    System.out.println("📝 Processando comando: " + comando);
+        return args -> {
+            try {
+                // Inicializa o VoiceListener
+                listener.initialize("src/main/resources/vosk-model-small-pt-0.3");
 
+                System.out.println("🎧 Sarah está ouvindo... Diga 'Sair' para encerrar.");
 
-                    // Primeiro tenta executar comandos do SO
-                    routerSO.execute(comando);
+                // Loop principal de escuta
+                while (true) {
+                    String comando = listener.listenForCommand();
 
-                    routerWeb.execute(comando);
-                    // Depois tenta comandos de arquivo/diretório
-                    routerFileAndDirectory.execute(comando);
+                    if (comando != null && !comando.trim().isEmpty()) {
+                        System.out.println("📝 Processando comando: " + comando);
+
+                        routerSO.execute(comando);
+                        routerWeb.execute(comando);
+                        routerFileAndDirectory.execute(comando);
+                    }
                 }
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
-        } finally {
-            listener.stop();
-        }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            } finally {
+                listener.stop();
+            }
+        };
     }
 }

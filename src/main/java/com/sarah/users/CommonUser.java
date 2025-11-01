@@ -1,12 +1,11 @@
 package com.sarah.users;
 
 import com.sarah.users.User;
+import jakarta.persistence.Entity;
 import lombok.experimental.SuperBuilder;
 
 
+@Entity
+@SuperBuilder
 public class CommonUser extends User {
-
-    public CommonUser(String nome, String email) {
-        super(nome, email);
-    }
 }

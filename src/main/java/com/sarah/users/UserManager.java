@@ -2,11 +2,12 @@ package com.sarah.users;
 
 
 import com.sarah.users.User;
+import jakarta.persistence.Entity;
 import lombok.experimental.SuperBuilder;
 
 
+
+@Entity
+@SuperBuilder
 public class UserManager extends User {
-    public UserManager(String nome, String email) {
-        super(nome, email);
-    }
 }

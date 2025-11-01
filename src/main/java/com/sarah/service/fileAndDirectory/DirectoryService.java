@@ -3,6 +3,7 @@ package com.sarah.service.fileAndDirectory;
 
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,6 +12,7 @@ import java.nio.file.Paths;
 
 
 @Log4j2
+@Component
 public class DirectoryService {
     private final static String path = ("C:\\Users\\Microsoft\\Documents\\ProjetosJava\\FileFacilite\\src\\directoryToProject\\");
     public  void createdDirectory( String directory){

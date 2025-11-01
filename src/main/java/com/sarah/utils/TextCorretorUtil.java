@@ -1,8 +1,12 @@
 package com.sarah.utils;
 
+import lombok.experimental.UtilityClass;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class TextCorretorUtil {
 
     // Dicionário de palavras com erros de codificação e suas versões corretas

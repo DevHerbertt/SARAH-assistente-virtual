@@ -1,6 +1,7 @@
 package com.sarah.service.fileAndDirectory;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
 
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Log4j2
+@Component
 public class FileService {
     private final String PATH = ("C:\\Users\\Microsoft\\Documents\\ProjetosJava\\FileFacilite\\src\\directoryToProject\\");
 

@@ -1,12 +1,11 @@
-package main.java.com.sarah.users;
+package com.sarah.users;
 
 import com.sarah.users.User;
+import jakarta.persistence.Entity;
 import lombok.experimental.SuperBuilder;
 
-
+@Entity
+@SuperBuilder
 public class KidsUser extends User {
 
-    public KidsUser(String nome, String email) {
-        super(nome, email);
-    }
 }

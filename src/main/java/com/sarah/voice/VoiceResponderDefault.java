@@ -1,5 +1,9 @@
 package com.sarah.voice;
 
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
+
 public enum VoiceResponderDefault {
     ERRO("audio/Erro.wav"),
     DIRECTORY_LER_ARQUIVO("audio/Ler_Arquivo.wav"),

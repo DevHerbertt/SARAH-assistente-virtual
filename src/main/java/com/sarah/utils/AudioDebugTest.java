@@ -1,8 +1,11 @@
 package com.sarah.utils;
 
+import lombok.experimental.UtilityClass;
+
 import java.io.File;
 import java.net.URL;
 
+@UtilityClass
 public class AudioDebugTest {
     public static void main(String[] args) {
         System.out.println("🔍 Testando localização dos arquivos de áudio...");
