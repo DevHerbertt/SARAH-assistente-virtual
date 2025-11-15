@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-sarah-assistente-virtual
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sarah_voice_db
+      MYSQL_USER: sarah_user
+      MYSQL_PASSWORD: sarah123
+    ports:
+      - "3306:3306"
+    volumes:
+      - sarah-assistente-virtual:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+
+volumes:
+  sarah-assistente-virtual:

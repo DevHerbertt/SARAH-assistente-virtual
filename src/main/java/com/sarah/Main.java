@@ -3,6 +3,7 @@ package com.sarah;
 import com.sarah.controller.CommandRouterFileAndDirectory;
 import com.sarah.controller.CommandRouterSO;
 import com.sarah.controller.CommandRouterWeb;
+import com.sarah.controller.CommandSpotify;
 import com.sarah.utils.VerificationUsers;
 import com.sarah.voice.VoiceListener;
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +24,7 @@ public class Main {
             CommandRouterFileAndDirectory routerFileAndDirectory,
             CommandRouterSO routerSO,
             CommandRouterWeb routerWeb,
+            CommandSpotify commandSpotify,
             VerificationUsers verificationUsers) {
 
         return args -> {
@@ -42,6 +44,7 @@ public class Main {
                         routerSO.execute(comando);
                         routerWeb.execute(comando);
                         routerFileAndDirectory.execute(comando);
+                        commandSpotify.execute(comando);
                     }
                 }
 

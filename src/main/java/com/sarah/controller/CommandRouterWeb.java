@@ -3,7 +3,7 @@ package com.sarah.controller;
 import com.sarah.service.SO.BrowserService;
 import com.sarah.service.memories.MemoriesCommandService;
 import com.sarah.utils.ComandVoiceMapperUtil;
-import com.sarah.utils.QuestionAndResponderUtil;
+import com.sarah.voice.VoiceResponder;
 import com.sarah.voice.VoiceResponderDefault;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
@@ -42,7 +42,6 @@ public class CommandRouterWeb {
 
         if (command == null) {
             log.info("Nenhum comando reconhecido para: " + phrase);
-            QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.ERRO);
             return;
         }
 
@@ -53,40 +52,48 @@ public class CommandRouterWeb {
             case "Abrindo_Navegador" -> {
                 log.debug("Abrindo_Navegador : initialize");
                 browserService.openBrowser("https://www.google.com/");
+                VoiceResponder.askAndListen(VoiceResponderDefault.EXECUTANDO);
                 log.debug("Abrindo_Navegador: End" + LocalDateTime.now());
+
             }
             case "Abrir_Youtube" -> {
                 log.debug("Abrir_Youtube : initialize");
                 browserService.openBrowser("https://www.youtube.com/");
+                VoiceResponder.askAndListen(VoiceResponderDefault.EXECUTANDO);
                 log.debug("Abrir_Youtube: End" + LocalDateTime.now());
             }
             case "Abrir_Instagram" -> {
                 log.debug("Abrir_Instagram : initialize");
                 browserService.openBrowser("https://www.instagram.com/");
+                VoiceResponder.askAndListen(VoiceResponderDefault.EXECUTANDO);
                 log.debug("Abrir_Instagram: End" + LocalDateTime.now());
             }
             case "Abrir_Facebook" -> {
                 log.debug("Abrir_Facebook : initialize");
                 browserService.openBrowser("https://www.facebook.com/");
+                VoiceResponder.askAndListen(VoiceResponderDefault.EXECUTANDO);
                 log.debug("Abrir_Facebook: End" + LocalDateTime.now());
             }
             case "Abrir_Gmail" -> {
                 log.debug("Abrir_Gmail : initialize");
                 browserService.openBrowser("https://mail.google.com/");
+                VoiceResponder.askAndListen(VoiceResponderDefault.EXECUTANDO);
                 log.debug("Abrir_Gmail: End" + LocalDateTime.now());
             }
             case "Abrir_Noticias" -> {
                 log.debug("Abrir_Noticias : initialize");
                 browserService.openBrowser("https://news.google.com/");
+                VoiceResponder.askAndListen(VoiceResponderDefault.EXECUTANDO);
                 log.debug("Abrir_Noticias: End" + LocalDateTime.now());
             }
             case "Abrir_Maps" -> {
                 log.debug("Abrir_Maps : initialize");
                 browserService.openBrowser("https://www.google.com/maps");
+                VoiceResponder.askAndListen(VoiceResponderDefault.EXECUTANDO);
                 log.debug("Abrir_Maps: End" + LocalDateTime.now());
             }
             default -> {
-                QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.ERRO);
+
                 log.info("❌ Comando não reconhecido: " + phrase);
             }
         }

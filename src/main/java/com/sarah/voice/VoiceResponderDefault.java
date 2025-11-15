@@ -14,7 +14,10 @@ public enum VoiceResponderDefault {
     NOME_DIRETORIO_DELETAR("audio/Nome_Diretorio_Deletar.wav"),
     NOME_ARQUIVO("audio/Nome_Arquivo.wav"),
     NOME_ARQUIVO_LER("audio/Nome_Arquivo_Ler.wav"),
-    DIRETORIO_LISTAR("audio/Diretorio_Listar.wav");
+    DIRETORIO_LISTAR("audio/Diretorio_Listar.wav"),
+    PEDIDO_ENTENDIDO("audio/Pedido entendido.wav"),
+    FINALIZANDO("audio/FInalizando.wav"),
+    EXECUTANDO("audio/executando.wav");
 
 
     private final String audioPath;

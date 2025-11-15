@@ -1,31 +1,27 @@
 package com.sarah.utils;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.experimental.UtilityClass;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-
 public class ComandVoiceMapperUtil {
-    private final Map<String, List<String>> commandMap = new HashMap<>();
+    private final Map<String, List<String>> commandMap;
 
-    // Construtor que carrega o JSON
-    public ComandVoiceMapperUtil(String jsonFilePath) throws IOException {
+    // ✅ Construtor que aceita InputStream
+    public ComandVoiceMapperUtil(InputStream inputStream) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, List<String>> map = mapper.readValue(new File(jsonFilePath), Map.class);
+        commandMap = mapper.readValue(inputStream, new TypeReference<Map<String, List<String>>>() {});
+    }
 
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            List<String> lowerCaseList = new ArrayList<>();
-            for (String phrase : entry.getValue()) {
-                lowerCaseList.add(phrase.toLowerCase());
-            }
-            commandMap.put(entry.getKey(), lowerCaseList);
-        }
+    // ✅ Construtor que aceita String (caminho do arquivo) - mantém compatibilidade
+    public ComandVoiceMapperUtil(String filePath) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        commandMap = mapper.readValue(new File(filePath), new TypeReference<Map<String, List<String>>>() {});
     }
 
     public String identifyCommand(String phrase) {
@@ -33,10 +29,11 @@ public class ComandVoiceMapperUtil {
             return null;
         }
 
-        String lowerPhrase = phrase.toLowerCase();
+        String normalizedPhrase = phrase.toLowerCase().trim();
+
         for (Map.Entry<String, List<String>> entry : commandMap.entrySet()) {
-            for (String variant : entry.getValue()) {
-                if (lowerPhrase.contains(variant)) {
+            for (String keyword : entry.getValue()) {
+                if (normalizedPhrase.contains(keyword.toLowerCase())) {
                     return entry.getKey();
                 }
             }

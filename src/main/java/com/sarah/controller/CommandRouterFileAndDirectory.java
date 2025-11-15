@@ -5,7 +5,7 @@ import com.sarah.service.fileAndDirectory.FileService;
 import com.sarah.service.memories.MemoriesCommandService;
 import com.sarah.utils.ComandVoiceMapperUtil;
 import com.sarah.utils.InputDialogUtil;
-import com.sarah.utils.QuestionAndResponderUtil;
+import com.sarah.voice.VoiceResponder;
 import com.sarah.voice.VoiceResponderDefault;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
@@ -45,57 +45,68 @@ public class CommandRouterFileAndDirectory {
 
         if (command == null) {
             log.info("Nenhum comando reconhecido para: " + phrase);
-            QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.ERRO);
+
             return;
         }
 
-        // Agora não será null
-
+        memoriesCommandService.updateRepetition(command);
         System.out.println("🎯 Comando identificado: " + command);
 
         switch (command) {
             case "criar_pasta" -> {
                 log.debug("criar_pasta : initialize");
-                QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.NOME_DIRETORIO);
+                VoiceResponder.askAndListen(VoiceResponderDefault.NOME_DIRETORIO);
                 String directoryName = InputDialogUtil.execute("Nome da Pasta ");
                 directoryService.createdDirectory(directoryName);
                 log.debug("Pasta criada: " + directoryName);
             }
             case "deletar_pasta" -> {
                 log.debug("deletar_pasta : initialize");
-                 QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.NOME_DIRETORIO_DELETAR);
+                VoiceResponder.askAndListen(VoiceResponderDefault.NOME_DIRETORIO_DELETAR);
                 String directoryName = InputDialogUtil.execute("Nome da Pasta ");
                 directoryService.deleteDirectory(directoryName);
                 log.debug("Pasta deletada: " + directoryName);
             }
             case "criar_arquivo" -> {
                 log.debug("criar_arquivo : initialize");
-                String directory = QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.NOME_DIRETORIO_ARQUIVO_SALVARA);
-//                String fileName = QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.NOME_ARQUIVO);
-//                fileService.createdFile(directory, fileName);
-//                log.debug("Arquivo criado: " + fileName + " em " + directory);
+                VoiceResponder.askAndListen(VoiceResponderDefault.NOME_DIRETORIO_ARQUIVO_SALVARA);
+                String directory = InputDialogUtil.execute("Diretório para salvar ");
+                VoiceResponder.askAndListen(VoiceResponderDefault.NOME_ARQUIVO);
+                String fileName = InputDialogUtil.execute("Nome do arquivo ");
+                fileService.createdFile(directory, fileName);
+                log.debug("Arquivo criado: " + fileName + " em " + directory);
+            }
+            case "deletar_arquivo" -> {
+                log.debug("deletar_arquivo : initialize");
+                // Usando InputDialog diretamente sem áudio específico
+                String directory = InputDialogUtil.execute("Diretório onde está o arquivo para deletar");
+                String fileName = InputDialogUtil.execute("Nome do arquivo para deletar");
+                fileService.deleteFile(directory, fileName);
+                log.debug("Arquivo deletado: " + fileName + " de " + directory);
             }
             case "ler_arquivo" -> {
                 log.debug("ler_arquivo : initialize");
-                String directory = QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.DIRECTORY_LER_ARQUIVO);
-//                String file = QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.);
-//                fileService.readFile(directory, file);
-//                log.debug("Arquivo lido: " + file + " de " + directory);
+                VoiceResponder.askAndListen(VoiceResponderDefault.DIRECTORY_LER_ARQUIVO);
+                String directory = InputDialogUtil.execute("Diretório do arquivo ");
+                VoiceResponder.askAndListen(VoiceResponderDefault.NOME_ARQUIVO_LER);
+                String fileName = InputDialogUtil.execute("Nome do arquivo ");
+                fileService.readFile(directory, fileName);
+                log.debug("Arquivo lido: " + fileName + " de " + directory);
             }
             case "detalhes_arquivo" -> {
                 log.debug("detalhes_arquivo : initialize");
-                QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.NOME_DIRETORIO);
-                QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.NOME_ARQUIVO_DETALHES);
-                String directoryName = InputDialogUtil.execute("Nome da Pasta ");
-                String file = InputDialogUtil.execute("Nome do arquivo ");
-                fileService.verificationOfFile(directoryName, file);
-                log.debug("Detalhes do arquivo: " + file + " em " + directoryName);
+                // Usando InputDialog diretamente sem áudio específico
+                String directoryName = InputDialogUtil.execute("Diretório do arquivo para ver detalhes");
+                String fileName = InputDialogUtil.execute("Nome do arquivo para ver detalhes");
+                fileService.verificationOfFile(directoryName, fileName);
+                log.debug("Detalhes do arquivo: " + fileName + " em " + directoryName);
             }
             case "listar_tudo" -> {
                 log.debug("listar_tudo : initialize");
-                QuestionAndResponderUtil.askAndListen(VoiceResponderDefault.LISTAR_ARQUIVOS);
+                VoiceResponder.askAndListen(VoiceResponderDefault.LISTAR_ARQUIVOS);
+                String directory = InputDialogUtil.execute("Diretório para listar ");
                 fileService.listAllFilesAndDirectories();
-                log.debug("Listagem concluída para: ");
+                log.debug("Listagem concluída para: " + directory);
             }
             case "sair" -> {
                 log.info("🛑 Comando de saída recebido. Encerrando Sarah...");
@@ -103,6 +114,7 @@ public class CommandRouterFileAndDirectory {
             }
             default -> {
                 log.info("❌ Comando não reconhecido: " + phrase);
+
             }
         }
     }

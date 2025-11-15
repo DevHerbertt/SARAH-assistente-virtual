@@ -18,7 +18,6 @@ public class MemoriesCommand {
 
     private String type;
 
-
     private LocalDateTime dateTimeOfCreate;
 
     private LocalDateTime dateTimeUpdate;

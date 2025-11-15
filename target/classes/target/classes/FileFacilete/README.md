@@ -81,4 +81,4 @@ Contribuições são bem-vindas! Siga estas etapas:
 
 ## Autor
 
-- **Herbert** - Desenvolvedor Backend em formação, com foco em projetos escaláveis e soluções eficientes.
+- **Herbert** - Desenvolvedor Backend 
